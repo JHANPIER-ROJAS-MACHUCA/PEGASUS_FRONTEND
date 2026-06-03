@@ -124,14 +124,14 @@ function HoloCard({ product, index, onClose }) {
         }}>
           <div>
             <span style={{ fontSize: 18, fontWeight: 700, color: "#446688", letterSpacing: 0.5 }}>
-              S/{Number(product.precio).toLocaleString()}
+              S/{(Number(product.precio) || 0).toLocaleString()}
             </span>
             {product.descuento && (
               <span style={{
                 fontSize: 10, color: "#FF6B6B", marginLeft: 8, fontWeight: 600,
                 textDecoration: "line-through",
               }}>
-                S/{Math.round(Number(product.precio) / (1 - product.descuento / 100)).toLocaleString()}
+                S/{Math.round((Number(product.precio) || 0) / (1 - (Number(product.descuento) || 0) / 100)).toLocaleString()}
               </span>
             )}
           </div>

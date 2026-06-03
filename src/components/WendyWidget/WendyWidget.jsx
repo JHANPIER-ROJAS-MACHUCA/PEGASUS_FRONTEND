@@ -350,7 +350,7 @@ export default function WendyWidget({ onProductsUpdate, onShowRegister, onGuidan
             textAlign: "center",
             fontSize: 11, color: "#88AACC",
           }}>
-            💡 Para acceder a <strong style={{ color: "#4682B4" }}>promociones exclusivas</strong>, regístrate al final de la conversación.
+            💡 <strong style={{ color: "#4682B4" }}>Regístrate</strong> para recibir recomendaciones personalizadas.
           </div>
         </div>
       </div>
@@ -497,7 +497,7 @@ export default function WendyWidget({ onProductsUpdate, onShowRegister, onGuidan
           }}
           onMouseEnter={e => { e.currentTarget.style.background = "rgba(135,206,235,0.1)"; }}
           onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-        >Registrarme para promociones</button>
+        >Registrarme</button>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ export default function Promociones({ onLockedClick, compact = false }) {
     }
   }
 
-  if (loading) return null;
+  if (loading || promos.length === 0) return null;
 
   const registrado = !!cliente;
 

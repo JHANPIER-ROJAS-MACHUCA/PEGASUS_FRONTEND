@@ -15,9 +15,11 @@ function CrossIcon() {
 }
 
 function ComparisonCard({ product, isWinner, isCheapest, registrado }) {
-  const precioOriginal = product.descuento > 0
-    ? Math.round(Number(product.precio) / (1 - product.descuento / 100))
-    : Number(product.precio);
+  const p = Number(product.precio) || 0;
+  const d = Number(product.descuento) || 0;
+  const precioOriginal = d > 0
+    ? Math.round(p / (1 - d / 100))
+    : p;
 
   // Calcular pros y contras relativos (vs el resto)
   const ramMatch = (product.ram || "").match(/(\d+)/);
@@ -178,11 +180,11 @@ function ComparisonCard({ product, isWinner, isCheapest, registrado }) {
                   fontSize: 10, color: "#FF6B6B", textDecoration: "line-through",
                   fontWeight: 500, marginBottom: 2,
                 }}>
-                  S/{precioOriginal.toLocaleString()}
+                  S/{(precioOriginal || 0).toLocaleString()}
                 </div>
               )}
               <span style={{ fontSize: 20, fontWeight: 700, color: "#446688" }}>
-                S/{Number(product.precio).toLocaleString()}
+                S/{(Number(product.precio) || 0).toLocaleString()}
               </span>
             </div>
             <button style={{

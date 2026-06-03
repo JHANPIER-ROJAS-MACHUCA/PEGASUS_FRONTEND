@@ -375,12 +375,13 @@ const menuItemStyle = {
 };
 
 function Destacados() {
+  const API_URL = import.meta.env.VITE_API_URL || "";
   const [prods, setProds] = useState([]);
   useEffect(() => { cargar(); }, []);
 
   async function cargar() {
     try {
-      const r = await fetch("/api/products");
+      const r = await fetch(`${API_URL}/api/products`);
       const data = await r.json();
       setProds((data || []).slice(0, 6));
     } catch {}

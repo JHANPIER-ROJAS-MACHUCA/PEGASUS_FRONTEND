@@ -202,8 +202,8 @@ export default function Tienda() {
           </h1>
           <p style={{ margin: "8px 0 0", fontSize: 14, color: "#6699CC", maxWidth: 600 }}>
             {cliente
-              ? "Tienes acceso completo a precios con descuento y promociones exclusivas para clientes registrados."
-              : "Explora nuestro catálogo. Las promociones y descuentos están disponibles para clientes registrados."}
+              ? "Tienes acceso completo a precios exclusivos para clientes registrados."
+              : "Explora nuestro catálogo. Tenemos laptops para cada necesidad."}
           </p>
 
           {!cliente && (
@@ -220,10 +220,10 @@ export default function Tienda() {
               onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
               </svg>
-              Registrarme para ver promociones
+              Registrarme
             </button>
           )}
         </div>
@@ -334,10 +334,12 @@ const menuItemStyle = {
 };
 
 function ProductCard({ product, registrado }) {
-  const tieneDescuento = product.descuento > 0;
+  const p = Number(product.precio) || 0;
+  const d = Number(product.descuento) || 0;
+  const tieneDescuento = d > 0;
   const precioOriginal = tieneDescuento
-    ? Math.round(Number(product.precio) / (1 - product.descuento / 100))
-    : Number(product.precio);
+    ? Math.round(p / (1 - d / 100))
+    : p;
 
   return (
     <div style={{
@@ -481,7 +483,7 @@ function ProductCard({ product, registrado }) {
                 fontSize: 11, color: "#FF6B6B", textDecoration: "line-through",
                 fontWeight: 500, marginBottom: 2,
               }}>
-                S/{precioOriginal.toLocaleString()}
+                S/{(precioOriginal || 0).toLocaleString()}
               </div>
             )}
             {tieneDescuento && !registrado && (
@@ -493,7 +495,7 @@ function ProductCard({ product, registrado }) {
               </div>
             )}
             <span style={{ fontSize: 20, fontWeight: 700, color: "#446688" }}>
-              S/{Number(product.precio).toLocaleString()}
+              S/{p.toLocaleString()}
             </span>
           </div>
           <button style={{
